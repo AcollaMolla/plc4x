@@ -152,6 +152,11 @@ public class S7ResponseSizeEstimator {
         if(s7AnyVarParameterItem.getDataType() == TransportSize.BOOL) {
             length += 1;
         }
+
+	//If an uneven number of bytes is requested, a filler byte will be added from the PLC
+	if(s7AnyVarParameterItem.getDataType() == TransportSize.BYTE && length % 2 != 0){
+		length +=1;
+	}
         return length;
     }
 
